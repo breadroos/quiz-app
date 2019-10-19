@@ -16,7 +16,16 @@
     <div class="quiz-title">
       General Trivia Quiz!
     </div>
-    <!-- this is a description on what the quiz is about -->
+
+    <div class="score-and-question-wrapper">
+      <div class="current-question">
+        Question: 1/5
+      </div>
+      <div class="score">
+        Current score: 0/15
+      </div>
+    </div>
+
     <div class="question-box-title">
       What is the best way to have an example question box?
     </div>
@@ -25,19 +34,20 @@
         <form action="" class="question-options">
           <div class="question-radio-options">
             <div class="option-1">
-              <input type="radio" name="option" value="You can do it this way.">
+              <div class="option-1">
+              <input type="radio" name="option" value="You can do it this way." id="option-1">
               <label for="option-1">You can do it this way.</label>
             </div>
             <div class="option-2">
-              <input type="radio" name="option" value="You can do it this way as well.">
+              <input type="radio" name="option" value="You can do it this way as well." id="option-2">
               <label for="option-2">You can do it this way as well.</label>
             </div>
             <div class="option-3">
-              <input type="radio" name="option" value="You could even do it this way if you wanted.">
+              <input type="radio" name="option" value="You could even do it this way if you wanted." id="option-3">
               <label for="option-3">You could even do it this way if you wanted.</label>
             </div>
             <div class="option-4">
-              <input type="radio" name="option" value="Even better yet, this way.">
+              <input type="radio" name="option" value="Even better yet, this way." id="option-4">
               <label for="option-4">Even better yet, this way.</label>
             </div>
           </div>
