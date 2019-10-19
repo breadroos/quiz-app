@@ -109,7 +109,39 @@ input, label {
   cursor: pointer;
 }
 
+/* ----------------------------------Correct/Incorrect Page------------------------------------------ */
 
+.question-options-container {
+  
+}
+
+.correct-container {
+  border-radius: 10px;
+      border: 10px solid green;
+      margin-bottom: 10px;
+      width: 75%;
+      margin-left: 25px;
+}
+
+.wrong-container {
+  border-radius: 10px;
+  border: 10px solid red;
+  margin-bottom: 10px;
+  width: 75%;
+  margin-left: 25px;
+}
+
+.right-answer {
+  display: block;
+  background: white;
+  padding: 5px;
+}
+
+.wrong-answer {
+  display: block;
+  background: white;
+  padding: 5px;
+}
 
 /* ----------------------------------Final Page------------------------------------------ */
 
