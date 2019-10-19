@@ -1,3 +1,4 @@
+/* ------------------------------Main Page--------------------------------------- */
 main {
   vertical-align: center;
   padding: 250px;
@@ -52,7 +53,7 @@ body {
 }
 
 
-/* ---------------------------------------------- */
+/* ---------------------------------Question-Page--------------------------------------- */
 
 .question-container {
   background-color: grey;
@@ -106,4 +107,34 @@ margin-bottom: 25px;
 
 input, label {
   cursor: pointer;
+}
+
+
+
+/* ----------------------------------Final Page------------------------------------------ */
+
+
+.question-box-title-final {
+  text-align: center;
+  font-size: 18px;
+}
+
+.restart-quiz-button {
+  margin-top: 25px;
+  color: white;
+  background-color: green;
+  border-radius: 5px;
+  height: 30px;
+  width: 150px;
+  font-size: 16px;
+}
+
+.restart-quiz-button:hover {
+  cursor: pointer;
+  background-color: red;
+}
+
+.restart-button-container {
+  display: flex;
+  justify-content: center;
 }
