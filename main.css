@@ -47,3 +47,40 @@ body {
 .start-quiz-button:hover {
   cursor: pointer;
 }
+
+
+/* ---------------------------------------------- */
+
+.question-container {
+  background-color: grey;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.question-submit-button {
+  color: white;
+  background-color: green;
+  border-radius: 5px;
+  height: 30px;
+  width: 150px;
+  font-size: 16px;
+}
+
+.question-radio-options {
+  padding-bottom: 15px;
+}
+
+.question-radio-options input {
+  display:block;
+}
+
+.question-radio-options label {
+  clear: both;
+  margin-left: 25px;
+  top: -16px;
+  position: relative
+}
+
+.question-box-title {
+  margin-bottom: 15px;
+}
