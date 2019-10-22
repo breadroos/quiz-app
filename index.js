@@ -25,9 +25,10 @@ function renderQuestion(){
   //need to find a question from the store.js file, and then render the html on the page for the user.
   let question = STORE.questions[STORE.currentQuestion];
   currentQuestionAndScore();
+  //need to figure out how to merge in the question values into the options on the page, using the current question and each of the options in the form needs to have the template string for the option itself.
   let questionHTML = $(`
       <div class="question-box-title">
-        What is the best way to have an example question box?
+        LOAD IN A QUESTION FROM STORE.JS HERE.
       </div>
       <!-- specifics of what the basic trivia pertains to -->
         <div class="question-box-content">
@@ -36,19 +37,19 @@ function renderQuestion(){
               <div class="option-1">
                 <div class="option-1">
                 <input type="radio" name="option" value="You can do it this way." id="option-1">
-                <label for="option-1">You can do it this way.</label>
+                <label for="option-1">LOAD IN A QUESTION OPTION FROM STORE.JS HERE</label>
               </div>
               <div class="option-2">
                 <input type="radio" name="option" value="You can do it this way as well." id="option-2">
-                <label for="option-2">You can do it this way as well.</label>
+                <label for="option-2">LOAD IN A QUESTION OPTION FROM STORE.JS HERE</label>
               </div>
               <div class="option-3">
                 <input type="radio" name="option" value="You could even do it this way if you wanted." id="option-3">
-                <label for="option-3">You could even do it this way if you wanted.</label>
+                <label for="option-3">LOAD IN A QUESTION OPTION FROM STORE.JS HERE</label>
               </div>
               <div class="option-4">
                 <input type="radio" name="option" value="Even better yet, this way." id="option-4">
-                <label for="option-4">Even better yet, this way.</label>
+                <label for="option-4">LOAD IN A QUESTION OPTION FROM STORE.JS HERE</label>
               </div>
             </div>
               <input type="submit" name="submit-button" class="question-submit-button" value="Submit">
@@ -72,3 +73,10 @@ function restartQuiz(){
 function oneToHandleThemAll(){
   //this function will run all the prior functions potentially, might have them run independently.
 };
+
+
+
+//
+// function isCorrect(choice, q) {
+//   return choice.value === STORE.answers[q];
+// }

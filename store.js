@@ -65,3 +65,56 @@ const STORE = {
 score: 0,
 currentQuestion: 0
 };
+
+//
+//
+// var STORE = {
+//   questions = [
+//     {
+//       Q: "Question 1?",
+//       Options: [
+//         "Opt1",
+//         "Opt2",
+//         "Opt3",
+//       ],
+//       A: "Opt1"
+//     },
+//     {},
+//     {}
+//   ]
+// }
+//
+// `
+// <input type="dropdown">
+//   <option value=${question.option}
+// </input>
+// `
+// // Add inputField
+// var $inputField = $("<input>");
+//
+// // add questions to input
+// for(question in questions) {
+//   renderQuestion(inputField, STORE.questions[i].option)
+// }
+//
+// function renderQuestion($inf, opt) {
+//   $inf.append(`<option value="${opt}">"`);
+// }
+//
+// arr = [
+//   ["value a 1" /* i0, j0*/, "value a 2" /*i0, j1*/], // i = 0
+//   ["value b 1" /* i1, j0*/, "value b 2" /*i1 j1*/] // i = 1
+// ]
+//
+// for (i in arr) {
+//   printValuesOfArr(arr[i])
+//   // for (j in arr[i]) {
+//   //
+//   // }
+// }
+//
+// printValuesOfArr(arr) {
+//   for (i in arr) {
+//     console.log[i];
+//   }
+// }
