@@ -79,12 +79,12 @@ $(function startQuiz() {
 //}
 
 var question = STORE.questions[0].question;
-var option1 = STORE.questions[0].options[0];
+var options = STORE.questions[0].options;
 
 function renderQuestion() {
   console.log('the start button is telling me to render a question.');
   console.log(question);
-  console.log(option1);
+  console.log(options);
   $('.description-container').replaceWith(`<div class="question-container">
     <div class="quiz-title">
       General Trivia Quiz!
@@ -109,19 +109,19 @@ function renderQuestion() {
             <div class="option-1">
               <div class="option-1">
               <input type="radio" name="option" value="${STORE.questions[0].options[0]}" id="option-1">
-              <label for="option-1">You can do it this way.</label>
+              <label for="option-1">${STORE.questions[0].options[0]}</label>
             </div>
             <div class="option-2">
-              <input type="radio" name="option" value="You can do it this way as well." id="option-2">
-              <label for="option-2">You can do it this way as well.</label>
+              <input type="radio" name="option" value="${STORE.questions[0].options[1]}" id="option-2">
+              <label for="option-2">${STORE.questions[0].options[1]}</label>
             </div>
             <div class="option-3">
-              <input type="radio" name="option" value="You could even do it this way if you wanted." id="option-3">
-              <label for="option-3">You could even do it this way if you wanted.</label>
+              <input type="radio" name="option" value="${STORE.questions[0].options[2]}" id="option-3">
+              <label for="option-3">${STORE.questions[0].options[2]}</label>
             </div>
             <div class="option-4">
-              <input type="radio" name="option" value="Even better yet, this way." id="option-4">
-              <label for="option-4">Even better yet, this way.</label>
+              <input type="radio" name="option" value="${STORE.questions[0].options[3]}" id="option-4">
+              <label for="option-4">${STORE.questions[0].options[3]}</label>
             </div>
           </div>
             <input type="submit" name="submit-button" class="question-submit-button" value="Submit">
