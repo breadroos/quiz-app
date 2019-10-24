@@ -132,6 +132,7 @@ function renderQuestion() {
 function checkAnswer(event) {
   event.preventDefault();
   var userAnswer = $('input:checked').val();
+  console.log('the check answer function is running');
 
   function verifyAnswer() {
     if (userAnswer === STORE.questions.question[0].answer[0]) {
@@ -146,15 +147,15 @@ function checkAnswer(event) {
       <div class="wrong-container">
         <span class="wrong-answer">Inorrect! The right answer is option 3.</span>
       </div>
-      `)
+      `);
     }
   }
 }
 
 
 function init() {
-  $('input .question-submit-button').on('click', checkAnswer);
-};
+  $(window).on('submit', '.question-options', checkAnswer);
+}
 
 init();
 // -on click store their answers
