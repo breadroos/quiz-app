@@ -128,15 +128,35 @@ function renderQuestion() {
   //need to find a question from the store.js file, and then render the html on the page for the user.
 };
 
-$(function checkAnswer() {
-  $('question-submit-button').on('click', function(event) {
-    event.preventDefault();
-    var userAnswer = $('input').on('click', function() {
-      $('input:checked').val()
-    });
-    console.log(userAnswer);
-  });
-});
+
+function checkAnswer(event) {
+  event.preventDefault();
+  var userAnswer = $('input:checked').val();
+
+  function verifyAnswer() {
+    if (userAnswer === STORE.questions.question[0].answer[0]) {
+      //display the correct message
+      $('input:checked').append(`
+      <div class="correct-container">
+        <span class="right-answer">Correct!</span>
+      </div>`);
+    } else {
+      //display that the answer is incorrect, and then add in the correct answer to the question.
+      $('input:checked').append(`
+      <div class="wrong-container">
+        <span class="wrong-answer">Inorrect! The right answer is option 3.</span>
+      </div>
+      `)
+    }
+  }
+}
+
+
+function init() {
+  $('input .question-submit-button').on('click', checkAnswer);
+};
+
+init();
 // -on click store their answers
 
 // -if the answer matches the answer in store, show the correct message
