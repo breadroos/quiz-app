@@ -126,7 +126,7 @@ function renderQuestion() {
   </div>
 `);
   //need to find a question from the store.js file, and then render the html on the page for the user.
-};
+}
 
 
 function checkAnswer(event) {
@@ -154,7 +154,7 @@ function checkAnswer(event) {
 
 
 function init() {
-  $(window).on('submit', '.question-options', checkAnswer);
+  $(document).on('submit', '.question-options', checkAnswer);
 }
 
 init();
