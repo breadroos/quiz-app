@@ -1,6 +1,9 @@
+/*jshint esversion: 6 */
+
 // creating an object named store which will have a three keys: questions, score, currentQuestion.
 const STORE = {
-  // inside of the store object there is one key, that key has a value of an array of data. inside of that array there are objects for each of the index items.
+  //start at the start of the object
+  currentQuestion: 0,
   questions: [
     //each of the objects in the array will have 3 keys: questions, options, and the answer.
     // QUESTION: 1
@@ -62,6 +65,16 @@ const STORE = {
       answer: "Female"
     },
   ],
+  HTML: {
+    correct: `<div class="correct-container">
+                <span class="right-answer">Correct!</span>
+              </div>`,
+    incorrect: function(correctOption) {
+                return `<div class="wrong-container">
+                  <span class="wrong-answer">Inorrect! The right answer is option ${correctOption}.</span>
+                </div>`;
+      }
+  }
 };
 
 // ----------------------------------------------------------------
@@ -126,43 +139,29 @@ function renderQuestion() {
 }
 
 //this function is supposed to run whenever a user chooses a radio option.
-//it should be preventing a page reload, and console logging the value of the answer that they have selected. 
+//it should be preventing a page reload, and console logging the value of the answer that they have selected.
 function checkAnswer(event) {
   event.preventDefault();
-  console.log('The checkAnswer function is running.')
-  $('document').ready(function() {
-    $("input[type='button']").click(function() {
-      console.log(userAnswer);
-    });
-  });
-}
-
-function questionSubmit() {
-  console.log('questionSubmit function is running')
-  var userAnswer = $('input:checked').val();
-  $(document).on('submit', '.question-options', checkAnswer);
-
-  function verifyAnswer() {
-    if (userAnswer === STORE.questions.question[0].answer[0]) {
-      //display the correct message
-      $('input:checked').append(`
-      <div class="correct-container">
-        <span class="right-answer">Correct!</span>
-      </div>`);
-    } else {
-      //display that the answer is incorrect, and then add in the correct answer to the question.
-      $('input:checked').append(`
-      <div class="wrong-container">
-        <span class="wrong-answer">Inorrect! The right answer is option 3.</span>
-      </div>
-      `);
-    }
-    console.log('verifyAnswer function is running.')
+  console.log('checking answer..');
+  var $selectedInput = $('input:checked');
+  var $selectedLabel = $('input:checked').parent().find('label');
+  var userAnswer = $selectedInput.val();
+  console.log('The selected answer is: '+userAnswer);
+  if(userAnswer === STORE.questions[STORE.currentQuestion].answer) {
+    $selectedLabel.append(STORE.HTML.correct);
+  } else {
+    $selectedLabel.append(STORE.HTML.incorrect);
   }
 }
 
+// var userAnswer = $('input:checked').val();
 
-// -on click store their answers
+function questionSubmit() {
+  console.log('questionSubmit function is running');
+  $(document).on('submit', '.question-options', checkAnswer);
+}
+
+// -on click store their answers - DONE
 
 // -if the answer matches the answer in store, show the correct message
 // -else show the incorrect message, with the right answer
