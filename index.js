@@ -70,10 +70,10 @@ const STORE = {
                 <span class="right-answer">Correct!</span>
               </div>`,
     incorrect: function(correctOption) {
-                return `<div class="wrong-container">
+      return `<div class="wrong-container">
                   <span class="wrong-answer">Inorrect! The right answer is option ${correctOption}.</span>
                 </div>`;
-      }
+    }
   }
 };
 
@@ -87,10 +87,20 @@ $(function startQuiz() {
   });
 });
 
-function renderQuestion() {
-  console.log('the start button is telling me to render a question.');
+function renderQuestion(questionID) {
+  $('.description-container').replaceWith(getQuestionHtml(STORE.currentQuestion));
+  $(".question-submit-button").click(function(e) {
+    e.preventDefault();
+    checkAnswer();
+  });
+  //need to find a question from the store.js file, and then render the html on the page for the user.
+}
+
+function getQuestionHtml(questionID) {
   questionSubmit();
-  $('.description-container').replaceWith(`<div class="question-container">
+  var question = STORE.questions[questionID];
+  var options = question.options;
+  return `<div class="question-container">
     <div class="quiz-title">
       General Trivia Quiz!
     </div>
@@ -105,63 +115,49 @@ function renderQuestion() {
     </div>
 
     <div class="question-box-title">
-      ${STORE.questions[0].question}
+      ${question.question}
     </div>
     <!-- specifics of what the basic trivia pertains to -->
       <div class="question-box-content">
         <form action="" class="question-options">
           <div class="question-radio-options">
             <div class="Options">
-              <div class="option-1">
-              <input type="radio" name="option" value="${STORE.questions[0].options[0]}" id="option-1">
-              <label for="option-1">${STORE.questions[0].options[0]}</label>
+              ${options.map((option, i) => `
+                <div class="option-${i+1}">
+                  <input type="radio" name="option" value="${option}" id="option-${i+1}">
+                  <label for="option-${i+1}">${option}</label>
+                </div>`).join('')}
             </div>
-            <div class="option-2">
-              <input type="radio" name="option" value="${STORE.questions[0].options[1]}" id="option-2">
-              <label for="option-2">${STORE.questions[0].options[1]}</label>
-            </div>
-            <div class="option-3">
-              <input type="radio" name="option" value="${STORE.questions[0].options[2]}" id="option-3">
-              <label for="option-3">${STORE.questions[0].options[2]}</label>
-            </div>
-            <div class="option-4">
-              <input type="radio" name="option" value="${STORE.questions[0].options[3]}" id="option-4">
-              <label for="option-4">${STORE.questions[0].options[3]}</label>
-            </div>
-          </div>
             <input type="submit" name="submit-button" class="question-submit-button" value="Submit">
         </form>
       </div>
     </div>
-  </div>
-`);
-  //need to find a question from the store.js file, and then render the html on the page for the user.
+  </div>`;
 }
 
-//this function is supposed to run whenever a user chooses a radio option.
-//it should be preventing a page reload, and console logging the value of the answer that they have selected.
 function checkAnswer(event) {
   event.preventDefault();
   console.log('checking answer..');
   var $selectedInput = $('input:checked');
   var $selectedLabel = $('input:checked').parent().find('label');
   var userAnswer = $selectedInput.val();
-  console.log('The selected answer is: '+userAnswer);
-  if(userAnswer === STORE.questions[STORE.currentQuestion].answer) {
+  console.log('The selected answer is: ' + userAnswer);
+  if (userAnswer === STORE.questions[STORE.currentQuestion].answer) {
     $selectedLabel.append(STORE.HTML.correct);
   } else {
     $selectedLabel.append(STORE.HTML.incorrect);
   }
 }
 
-// var userAnswer = $('input:checked').val();
-
 function questionSubmit() {
   console.log('questionSubmit function is running');
   $(document).on('submit', '.question-options', checkAnswer);
 }
 
-// -on click store their answers - DONE
-
-// -if the answer matches the answer in store, show the correct message
-// -else show the incorrect message, with the right answer
+function nextQuestion() {
+  if(currentQuestion <= STORE.questions.length){
+    renderQuestion();
+  } else {
+    // display the final score screen
+  }
+}
