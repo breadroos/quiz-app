@@ -62,7 +62,7 @@ body {
   border-radius: 15px;
 }
 
-.question-submit-button {
+.question-submit-button, .next-button {
   color: white;
   background-color: green;
   border-radius: 5px;
@@ -112,7 +112,7 @@ input, label {
 /* ----------------------------------Correct/Incorrect Page------------------------------------------ */
 
 .question-options-container {
-  
+
 }
 
 .correct-container {

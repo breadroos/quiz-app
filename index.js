@@ -136,12 +136,12 @@ function getQuestionHtml(questionID) {
 }
 
 function checkAnswer(event) {
-  event.preventDefault();
   console.log('checking answer..');
   var $selectedInput = $('input:checked');
   var $selectedLabel = $('input:checked').parent().find('label');
   var userAnswer = $selectedInput.val();
   console.log('The selected answer is: ' + userAnswer);
+  $('.question-submit-button').replaceWith(`<input type="submit" name="next-button" class="next-button" value="Next">`);
   if (userAnswer === STORE.questions[STORE.currentQuestion].answer) {
     $selectedLabel.append(STORE.HTML.correct);
   } else {
@@ -154,10 +154,46 @@ function questionSubmit() {
   $(document).on('submit', '.question-options', checkAnswer);
 }
 
+function handleSubmit(){
+  nextQuestion();
+  renderQuestion();
+}
+
 function nextQuestion() {
-  if(currentQuestion <= STORE.questions.length){
+  $(document).on('submit', handleSubmit);
+  if (currentQuestion <= STORE.questions.length) {
     renderQuestion();
   } else {
     // display the final score screen
+    $('body').replaceWith(`<body>
+      <!-- main section on the starting page -->
+      <main>
+        <!-- this is the title of the quiz app, and has been given a class to match that description -->
+      <div class="question-container">
+        <div class="quiz-title">
+          General Trivia Quiz!
+        </div>
+
+        <div class="score-and-question-wrapper">
+          <div class="current-question">
+            Question: 1/5
+          </div>
+          <div class="score">
+            Current score: 0/15
+          </div>
+        </div>
+        <div class="question-box-title-final">
+          Your Final Score: 0/15
+        </div>
+        <div class="restart-button-container">
+          <button class="restart-quiz-button">
+          Restart Quiz
+          </button>
+        </div>
+      </main>
+      <!-- this script will load in the primary file of our javascript to make the app function -->
+      <script src="main.js"></script>
+    </body>
+`);
   }
 }
