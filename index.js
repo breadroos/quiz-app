@@ -73,8 +73,9 @@ const STORE = {
       return `<div class="wrong-container">
                   <span class="wrong-answer">Inorrect! The right answer is option ${correctOption}.</span>
                 </div>`;
-    }
-  }
+    },
+  },
+
 };
 
 // ----------------------------------------------------------------
@@ -100,7 +101,7 @@ function getQuestionHtml(questionID) {
   questionSubmit();
   var question = STORE.questions[questionID];
   var options = question.options;
-  return `<div class="question-container">
+  const questionHTML = $(`<div class="question-container">
     <div class="quiz-title">
       General Trivia Quiz!
     </div>
@@ -128,11 +129,14 @@ function getQuestionHtml(questionID) {
                   <label for="option-${i+1}">${option}</label>
                 </div>`).join('')}
             </div>
-            <input type="submit" name="submit-button" class="question-submit-button" value="Submit">
+            <button type="submit" name="submit-button" id="question-submit-button">Submit</button>
+            <button type="button" name="next-button" id="next-button">Next</button>
         </form>
       </div>
     </div>
-  </div>`;
+  </div>`);
+  $('main').html(questionHTML);
+  $('#next-button').hide();
 }
 
 function checkAnswer(event) {
@@ -140,8 +144,6 @@ function checkAnswer(event) {
   var $selectedInput = $('input:checked');
   var $selectedLabel = $('input:checked').parent().find('label');
   var userAnswer = $selectedInput.val();
-  console.log('The selected answer is: ' + userAnswer);
-  $('.question-submit-button').replaceWith(`<input type="submit" name="next-button" class="next-button" value="Next">`);
   if (userAnswer === STORE.questions[STORE.currentQuestion].answer) {
     $selectedLabel.append(STORE.HTML.correct);
   } else {
@@ -154,7 +156,7 @@ function questionSubmit() {
   $(document).on('submit', '.question-options', checkAnswer);
 }
 
-function handleSubmit(){
+function handleSubmit() {
   nextQuestion();
   renderQuestion();
 }
@@ -197,3 +199,20 @@ function nextQuestion() {
 `);
   }
 }
+
+
+
+
+//
+//
+// function buttonToggle() {
+//   currentButton = {};
+//   console.log('buttonToggle is running.');
+//   if (STORE.HTML.currentButton == $questionSubmitButton) {
+//     $('STORE.HTML.$questionSubmitButton').replaceWith(STORE.HTML.$nextButton);
+//     currentButton = STORE.HTML.$nextButton;
+//   } else {
+//     $('STORE.HTML.$nextButton').replaceWith(STORE.HTML.$questionSubmitButton);
+//     currentButton = STORE.HTML.$questionSubmitButton;
+//   }
+// }

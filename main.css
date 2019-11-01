@@ -62,7 +62,7 @@ body {
   border-radius: 15px;
 }
 
-.question-submit-button, .next-button {
+#question-submit-button, #next-button {
   color: white;
   background-color: green;
   border-radius: 5px;
@@ -71,7 +71,7 @@ body {
   font-size: 16px;
 }
 
-.question-submit-button:hover {
+#question-submit-button:hover {
   cursor: pointer;
 }
 
