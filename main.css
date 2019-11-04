@@ -62,7 +62,7 @@ body {
   border-radius: 15px;
 }
 
-#question-submit-button, #next-button {
+#question-submit-button, #next-button, #restart-quiz-button {
   color: white;
   background-color: green;
   border-radius: 5px;

@@ -3,7 +3,6 @@
 // creating an object named store which will have a three keys: questions, score, currentQuestion.
 const STORE = {
   //start at the start of the object
-  currentQuestion: 0,
   questions: [
     //each of the objects in the array will have 3 keys: questions, options, and the answer.
     // QUESTION: 1
@@ -75,31 +74,30 @@ const STORE = {
                 </div>`;
     },
   },
-
+  currentQuestion: 0,
+  score: 0
 };
 
 // ----------------------------------------------------------------
 
-$(function startQuiz() {
+function startQuiz() {
   //when the user clicks on the start-quiz-button run a function that will render a question for them.
   $('.start-quiz-button').on('click', function(event) {
     console.log('The start button is working');
     renderQuestion();
   });
-});
+}
 
 function renderQuestion(questionID) {
-  $('.description-container').replaceWith(getQuestionHtml(STORE.currentQuestion));
-  $(".question-submit-button").click(function(e) {
-    e.preventDefault();
-    checkAnswer();
-  });
+  console.log('renderQuestion is running now.');
+  $('.description-container').replaceWith(getOptionHtml(STORE.currentQuestion));
+  $(".question-submit-button").click(function(e) {});
   //need to find a question from the store.js file, and then render the html on the page for the user.
 }
 
-function getQuestionHtml(questionID) {
-  questionSubmit();
-  var question = STORE.questions[questionID];
+function getOptionHtml(questionID) {
+  console.log('getOptionHtml is running');
+  var question = STORE.questions[STORE.currentQuestion];
   var options = question.options;
   const questionHTML = $(`<div class="question-container">
     <div class="quiz-title">
@@ -111,7 +109,7 @@ function getQuestionHtml(questionID) {
         Question: 1/5
       </div>
       <div class="score">
-        Current score: 0/15
+        Current score: ${STORE.score}/5
       </div>
     </div>
 
@@ -131,37 +129,44 @@ function getQuestionHtml(questionID) {
             </div>
             <button type="submit" name="submit-button" id="question-submit-button">Submit</button>
             <button type="button" name="next-button" id="next-button">Next</button>
+            <button type="button" name="restart-quiz-button" id="restart-quiz-button">Restart!</button>
         </form>
       </div>
     </div>
   </div>`);
   $('main').html(questionHTML);
   $('#next-button').hide();
+  $('#restart-quiz-button').hide();
 }
 
-function checkAnswer(event) {
-  console.log('checking answer..');
-  var $selectedInput = $('input:checked');
-  var $selectedLabel = $('input:checked').parent().find('label');
-  var userAnswer = $selectedInput.val();
-  if (userAnswer === STORE.questions[STORE.currentQuestion].answer) {
-    $selectedLabel.append(STORE.HTML.correct);
-  } else {
-    $selectedLabel.append(STORE.HTML.incorrect);
-  }
+function checkAnswer() {
+  $('body').on('submit', function(event) {
+    event.preventDefault();
+    console.log('checking answer..');
+    var $selectedInput = $('input:checked');
+    var $selectedLabel = $('input:checked').parent().find('label');
+    var userAnswer = $selectedInput.val();
+    if (userAnswer === STORE.questions[STORE.currentQuestion].answer) {
+      $selectedLabel.append(STORE.HTML.correct);
+      STORE.score++;
+    } else {
+      $selectedLabel.append(STORE.HTML.incorrect);
+    }
+    $('#next-button').show();
+    $('#question-submit-button').hide();
+  });
 }
 
-function questionSubmit() {
-  console.log('questionSubmit function is running');
-  $(document).on('submit', '.question-options', checkAnswer);
-}
 
-function handleSubmit() {
-  nextQuestion();
-  renderQuestion();
-}
+// function questionSubmit() {
+//   $(document).on('submit', '.question-options', checkAnswer);
+//   console.log('questionSubmit function is running');
+//   event.preventDefault();
+//   STORE.currentQuestion++;
+// }
 
 function nextQuestion() {
+  console.log('nextQuestion function is running');
   $(document).on('submit', handleSubmit);
   if (currentQuestion <= STORE.questions.length) {
     renderQuestion();
@@ -181,7 +186,7 @@ function nextQuestion() {
             Question: 1/5
           </div>
           <div class="score">
-            Current score: 0/15
+            Current score: ${STORE.score}/5
           </div>
         </div>
         <div class="question-box-title-final">
@@ -200,19 +205,20 @@ function nextQuestion() {
   }
 }
 
+function restartQuiz() {
+  restartQuiz('restartQuiz function is running');
+  $('body').on('click', function() {
+    // replace the submit button with a restart button
+    $('#next-button').hide();
+    $('#restart-quiz-button').show();
+  });
+}
 
+function runQuiz() {
+  console.log('runQuiz function is running');
+  startQuiz();
+  // restartQuiz();
+  checkAnswer();
+}
 
-
-//
-//
-// function buttonToggle() {
-//   currentButton = {};
-//   console.log('buttonToggle is running.');
-//   if (STORE.HTML.currentButton == $questionSubmitButton) {
-//     $('STORE.HTML.$questionSubmitButton').replaceWith(STORE.HTML.$nextButton);
-//     currentButton = STORE.HTML.$nextButton;
-//   } else {
-//     $('STORE.HTML.$nextButton').replaceWith(STORE.HTML.$questionSubmitButton);
-//     currentButton = STORE.HTML.$questionSubmitButton;
-//   }
-// }
+runQuiz();
