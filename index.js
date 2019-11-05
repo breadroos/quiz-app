@@ -157,18 +157,19 @@ function checkAnswer() {
   });
 }
 
+function addQuestionOptions() {
+  let question = STORE.questions[STORE.currentQuestion];
+  for(let i=0; i<STORE.questions.options.length;i++) {
 
-// function questionSubmit() {
-//   $(document).on('submit', '.question-options', checkAnswer);
-//   console.log('questionSubmit function is running');
-//   event.preventDefault();
-//   STORE.currentQuestion++;
-// }
+  }
+}
+
 
 function nextQuestion() {
   console.log('nextQuestion function is running');
   $(document).on('submit', handleSubmit);
   if (currentQuestion <= STORE.questions.length) {
+    STORE.currentQuestion++;
     renderQuestion();
   } else {
     // display the final score screen
@@ -190,7 +191,7 @@ function nextQuestion() {
           </div>
         </div>
         <div class="question-box-title-final">
-          Your Final Score: 0/15
+          Your Final Score: ${STORE.score}/5
         </div>
         <div class="restart-button-container">
           <button class="restart-quiz-button">
@@ -217,7 +218,7 @@ function restartQuiz() {
 function runQuiz() {
   console.log('runQuiz function is running');
   startQuiz();
-  // restartQuiz();
+  nextQuestion();
   checkAnswer();
 }
 
