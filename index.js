@@ -91,11 +91,15 @@ function startQuiz() {
 function renderQuestion(questionID) {
   console.log('renderQuestion is running now.');
   $('.description-container').replaceWith(getOptionHtml(STORE.currentQuestion));
-  $(".question-submit-button").click(function(e) {});
+  $(".question-submit-button").click(function(e) {
+    e.preventDefault();
+    checkAnswer();
+  });
   //need to find a question from the store.js file, and then render the html on the page for the user.
 }
 
-function getOptionHtml(questionID) {
+
+function getQuestionHtml(questionID) {
   console.log('getOptionHtml is running');
   var question = STORE.questions[STORE.currentQuestion];
   var options = question.options;
@@ -191,7 +195,7 @@ function nextQuestion() {
           </div>
         </div>
         <div class="question-box-title-final">
-          Your Final Score: ${STORE.score}/5
+          Your Final Score: /5
         </div>
         <div class="restart-button-container">
           <button class="restart-quiz-button">
@@ -207,8 +211,8 @@ function nextQuestion() {
 }
 
 function restartQuiz() {
-  restartQuiz('restartQuiz function is running');
-  $('body').on('click', function() {
+  console.log('restartQuiz function is running');
+  $('body').on('click', '#restart-quiz-button', function() {
     // replace the submit button with a restart button
     $('#next-button').hide();
     $('#restart-quiz-button').show();
@@ -218,7 +222,6 @@ function restartQuiz() {
 function runQuiz() {
   console.log('runQuiz function is running');
   startQuiz();
-  nextQuestion();
   checkAnswer();
 }
 
