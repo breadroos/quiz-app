@@ -1,7 +1,9 @@
 /* ------------------------------Main Page--------------------------------------- */
 main {
-  vertical-align: center;
-  padding: 250px;
+  display: flex;
+  padding-top: 100px;
+  justify-content: center;
+  width: 100%;
 }
 
 body {
@@ -169,5 +171,9 @@ input, label {
 @@media (max-width: 576px) {
   .question-container {
     width: 100%;
+  }
+
+  main {
+    padding: 0;
   }
 }
