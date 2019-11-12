@@ -216,7 +216,7 @@ function displayFinalScreen() {
       </button>
     </div>
   </main>`);
-  $('#restart-quiz-button').on('submit', function(){
+  $('#restart-quiz-button').on('click', function(){
     window.location.reload();
   });
 }
